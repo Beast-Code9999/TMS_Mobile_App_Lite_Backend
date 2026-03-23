@@ -13,16 +13,15 @@ class Course(models.Model):
     
 # Unit model
 class Module(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='units')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='modules')
     title = models.CharField(max_length=200)
     order = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
-    
 # Assessment model
 class Assessment(models.Model):
-    unit = models.ForeignKey(Module, on_delete=models.CASCADE, related_name='assessments')
+    module = models.ForeignKey(Module, on_delete=models.CASCADE, related_name='assessments')
     title = models.CharField(max_length=200)
     due_date = models.DateTimeField()
     description = models.TextField(blank=True)
